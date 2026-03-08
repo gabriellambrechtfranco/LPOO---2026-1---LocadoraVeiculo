@@ -27,10 +27,14 @@ class Veiculo(ABC):
         return self.__taxa_diaria
     
     @taxa_diaria.setter
-    def taxa_diaria(self, taxa_diaria):
+    def taxa_diaria(self, taxa_diaria:float):
+        if taxa_diaria < 0:
+            raise ValueError("A taxa diária do veículo deve ser maior que zero.")
+        elif taxa_diaria is None:
+            raise ValueError("A taxa diária é obrigatória!")
         self.__taxa_diaria = taxa_diaria
         
-    def valida_placa(self, placa):
+    def valida_placa(self, placa:str):
         placa = placa.strip().replace("-", "").upper()
         if (len(placa) != 7):
             raise PlacaInvalidaError("Placa inválida! Placa deve conter 7 caracteres")
