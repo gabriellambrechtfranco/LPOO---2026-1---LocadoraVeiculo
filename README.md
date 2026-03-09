@@ -10,8 +10,8 @@ Os guias práticos para a implementação dos padrões de projeto no sistema da 
 
 *   [Aula 2 - Factory Method](<tutoriais/aula-2-tutorial--factory--locadora-veiculos.md>)
 *   [Aula 3.1 - Strategy](<tutoriais/aula-3-1-tutorial-strategy--locadora-veiculos.md>)
-*   [Aula 3.2 - State](<tutoriais/aula-3-2-tutorial-state--locadora-de-veículos.md>)
-*   [Aula 3.3 - Decorator](<tutoriais/aula-3-3-tutorial-decorator--locadora-de-veículos.md>)
+*   [Aula 3.2 - State](<tutoriais/aula-3-2-tutorial-state--locadora-veiculos.md>)
+*   [Aula 3.3 - Decorator](<tutoriais/aula-3-3-tutorial-decorator--locadora-veiculos.md>)
 
 ---
 
@@ -21,5 +21,5 @@ Hoje, dia **09 de março**, foi trabalhado o conteúdo da aula 3. Durante a aula
 
 **Tarefa para a próxima aula (16 de março):**
 Os alunos devem realizar os tutoriais a seguir e enviá-los através do Google Classroom antes do nosso próximo encontro no dia 16:
-*   [Aula 3.2 - State](<tutoriais/aula-3-2-tutorial-state--locadora-de-veículos.md>)
-*   [Aula 3.3 - Decorator](<tutoriais/aula-3-3-tutorial-decorator--locadora-de-veículos.md>)
+*   [Aula 3.2 - State](<tutoriais/aula-3-2-tutorial-state--locadora-veiculos.md>)
+*   [Aula 3.3 - Decorator](<tutoriais/aula-3-3-tutorial-decorator--locadora-veiculos.md>)
