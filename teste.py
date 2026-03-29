@@ -3,6 +3,7 @@ from model.locacao import Locacao
 from model.veiculo import VeiculoFactory, Categoria
 from model.ExcecoesPersonalizadas import DataInvalidaError
 from model.LocacaoStrategy import *
+from model.decoradores import GPSDecorator, SeguroTerceirosDecorator
 
 print("\n1. Testando tipos válidos na fábrica:")
 try:
@@ -33,7 +34,7 @@ try:
     print(f"Cálculo para {diferenca_datas.days} dias: R$ {valor}")
 except Exception as e:
     print(f"Erro no cálculo de múltiplos dias: {e}")
-'''
+
 # Cálculo com devolução no mesmo dia
 print("\n4. Testando cálculo com devolução no mesmo dia (mínimo 1 diária):")
 try:
@@ -63,4 +64,30 @@ try:
 except ValueError as e:
     print(f"Exceção capturada corretamente: {e}")
 
-'''
+print("\n--- TUTORIAL 3.1: TESTANDO O PADRÃO STRATEGY ---")
+data_in = date(2026, 3, 10)
+data_out = date(2026, 3, 15)
+locacao_normal = Locacao(veiculo=carro, data_inicio=data_in, data_fim=data_out)
+print(f"Valor Padrão: R$ {locacao_normal.calcular_valor_locacao()}")
+
+locacao_vip = Locacao(veiculo=carro, data_inicio=data_in, data_fim=data_out, estrategia=CalculoVIPStrategy())
+print(f"Valor Cliente VIP: R$ {locacao_vip.calcular_valor_locacao()}")
+
+print("\n--- TUTORIAL 3.2: TESTANDO O PADRÃO STATE RESTRITIVO ---")
+carro_estado = VeiculoFactory.criar_veiculo("carro", "HJI3K45", Categoria.ECONOMICO, taxa_diaria=100.0)
+carro_estado.tentar_alugar() # OK - Transitará
+carro_estado.tentar_alugar() # Erro Interativo ("Já está alugado!")
+carro_estado.reter_na_frota_pra_conserto() # Bloqueado
+carro_estado.tentar_devolver() # Ok (Retorna)
+carro_estado.reter_na_frota_pra_conserto() # Ok 
+carro_estado.tentar_alugar() # Falha! Está em Manutenção.
+
+print("\n--- TUTORIAL 3.3: TESTANDO O PADRÃO DECORATOR ---")
+locacao_base = Locacao(veiculo=carro, data_inicio=date(2026, 3, 1), data_fim=date(2026, 3, 5))
+print(f"Valor Base (somente Diária + Seguro Base): R$ {locacao_base.calcular_valor_locacao()}")
+
+locacao_com_gps = GPSDecorator(locacao_base)
+print(f"Valor somado do pacote + GPS: R$ {locacao_com_gps.calcular_valor_locacao()}")
+
+locacao_vip_top = SeguroTerceirosDecorator(locacao_com_gps)
+print(f"Valor pacote completão (Base + GPS + Seg.Terceiros): R$ {locacao_vip_top.calcular_valor_locacao()}")

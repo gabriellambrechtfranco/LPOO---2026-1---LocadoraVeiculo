@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 from enum import Enum
 from .ExcecoesPersonalizadas import PlacaInvalidaError
+from .estados_veiculo import DisponivelState
 
 class Categoria(Enum):
     ECONOMICO = "ECONOMICO"
@@ -9,10 +10,32 @@ class Categoria(Enum):
     
 class Veiculo(ABC):
     def __init__(self, placa: str, taxa_diaria: float, categoria: Categoria = Categoria.ECONOMICO):
+        self.__placa = ""
+        self.__taxa_diaria = 0.0
+        self._estado_atual = None
         self.placa = placa
         self.categoria = categoria
         self.taxa_diaria = taxa_diaria
+        self.estado_atual = DisponivelState(self)
+
         
+    @property
+    def estado_atual(self):
+        return self._estado_atual
+
+    @estado_atual.setter
+    def estado_atual(self, novo_estado):
+        self._estado_atual = novo_estado
+
+    def tentar_alugar(self):
+        self.estado_atual.alugar()
+        
+    def tentar_devolver(self):
+        self.estado_atual.devolver()
+        
+    def reter_na_frota_pra_conserto(self):
+        self.estado_atual.enviar_manutencao()
+
     @property
     def placa(self):
         return self.__placa
