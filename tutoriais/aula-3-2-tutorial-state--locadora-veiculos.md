@@ -151,4 +151,3 @@ carro_estado.reter_na_frota_pra_conserto() # Ok
 carro_estado.tentar_alugar() # Falha! Está em Manutenção.
 ```
 
-É exatamente dessa forma independente que as classes se comunicam sem se destruir sob excesso de *spaghettis code*. Uma vitória do seu controle arquitetural com o auxílio do **Strategy**, **Decorator** e **State**.

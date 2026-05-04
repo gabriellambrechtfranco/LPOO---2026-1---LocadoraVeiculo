@@ -13,6 +13,17 @@ class LocacaoDecorator(ABC):
     def locacao_alvo(self, valor):
         self.__locacao_alvo = valor
 
+<<<<<<< HEAD
+=======
+    @property
+    def data_inicio(self):
+        return self.locacao_alvo.data_inicio
+        
+    @property
+    def data_fim(self):
+        return self.locacao_alvo.data_fim
+
+>>>>>>> 36829c3181f6bafdb411550d19c19b9574303e30
     @abstractmethod
     def calcular_valor_locacao(self) -> float:
         # Repassa o cálculo base provido pela instancia "envelopada" e joga na filha
@@ -50,13 +61,20 @@ class SeguroTerceirosDecorator(LocacaoDecorator):
         self.__taxa_diaria_seguro = valor
 
     def calcular_valor_locacao(self) -> float:
+<<<<<<< HEAD
         # Note que se a base for nossa classe Locacao, podemos invocar outras defs do alvo
         # Como o decorator não sabe se a base tem "data_fim", pegamos dias por inferência
         # Ou se valendo da flexibilidade do Duck Typing do Python!
         
         # Em prol de um design enxuto de aula, consideraremos soma simples em diárias:
+=======
+>>>>>>> 36829c3181f6bafdb411550d19c19b9574303e30
         dias = (self.locacao_alvo.data_fim - self.locacao_alvo.data_inicio).days
         if dias <= 0: dias = 1
             
         valor_original_envelopado = self.locacao_alvo.calcular_valor_locacao()
+<<<<<<< HEAD
         return float(valor_original_envelopado + (dias * self.taxa_diaria_seguro))
+=======
+        return float(valor_original_envelopado + (dias * self.taxa_diaria_seguro))
+>>>>>>> 36829c3181f6bafdb411550d19c19b9574303e30

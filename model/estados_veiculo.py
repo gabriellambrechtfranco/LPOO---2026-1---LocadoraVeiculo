@@ -23,6 +23,10 @@ class VeiculoState(ABC):
     @abstractmethod
     def enviar_manutencao(self): pass
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 36829c3181f6bafdb411550d19c19b9574303e30
 class DisponivelState(VeiculoState):
     def alugar(self):
         print(f"Sucesso! O veículo {self.veiculo.placa} agora está alugado para um cliente.")
@@ -60,4 +64,8 @@ class ManutencaoState(VeiculoState):
         self.veiculo.estado_atual = DisponivelState(self.veiculo)
         
     def enviar_manutencao(self):
+<<<<<<< HEAD
         print("O veículo já se encontra nos estaleiros da oficina no momento.")
+=======
+        print("O veículo já se encontra nos estaleiros da oficina no momento.")
+>>>>>>> 36829c3181f6bafdb411550d19c19b9574303e30

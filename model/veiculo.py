@@ -10,9 +10,13 @@ class Categoria(Enum):
 
 class Veiculo(ABC):
     def __init__(self, placa: str, taxa_diaria: float, categoria: Categoria = Categoria.ECONOMICO):
+        self.__placa = ""
+        self.__taxa_diaria = 0.0
+        self._estado_atual = None
         self.placa = placa
         self.categoria = categoria
         self.taxa_diaria = taxa_diaria
+<<<<<<< HEAD
         # Todo veículo "começa a vida" estando recém-comprado e disponível.
         self.estado_atual = DisponivelState(self)
 
@@ -24,6 +28,10 @@ class Veiculo(ABC):
     def estado_atual(self, novo_estado):
         # Usado pelas classes de estado para mudar o ponteiro do carro
         self._estado_atual = novo_estado
+=======
+        self.estado_atual = DisponivelState(self)
+
+>>>>>>> 36829c3181f6bafdb411550d19c19b9574303e30
         
     # DELEGAÇÃO:
     def tentar_alugar(self):
@@ -34,6 +42,26 @@ class Veiculo(ABC):
         
     def reter_na_frota_pra_conserto(self):
         self.estado_atual.enviar_manutencao()
+
+    @property
+    def estado_atual(self):
+        return self._estado_atual
+
+    @estado_atual.setter
+    def estado_atual(self, novo_estado):
+        self._estado_atual = novo_estado
+
+    def tentar_alugar(self):
+        self.estado_atual.alugar()
+        
+    def tentar_devolver(self):
+        self.estado_atual.devolver()
+        
+    def reter_na_frota_pra_conserto(self):
+        self.estado_atual.enviar_manutencao()
+        
+    def exibir_dados(self):
+        return f"Placa: {self.placa}\nCategoria: {self.categoria.name}\nTaxa Diária: R$ {self.taxa_diaria:.2f}\nEstado: {self.estado_atual.__class__.__name__.strip().lower().replace('state','')}"
 
     @property
     def placa(self):
