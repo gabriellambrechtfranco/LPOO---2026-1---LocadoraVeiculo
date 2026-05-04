@@ -14,6 +14,7 @@ class Locacao:
         self.data_inicio = data_inicio
         self.data_fim = data_fim
         self.estrategia = estrategia
+        self.devolvido = False
     
     @property
     def veiculo(self):
