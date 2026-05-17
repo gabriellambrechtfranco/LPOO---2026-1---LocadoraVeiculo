@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import tkinter as tk
 <<<<<<< HEAD
 from model.veiculo_repository import VeiculoRepository
@@ -11,22 +12,57 @@ app = MainView(root, repo)
 root.mainloop()
 =======
 import sys
+=======
+>>>>>>> Stashed changes
 import os
+import sys
+import tkinter as tk
 
-# Adiciona o diretório raiz ao sys.path para garantir que os módulos sejam encontrados
 sys.path.append(os.path.abspath(os.path.dirname(__file__)))
 
+from view.locacao_admin_view import JanelaListagemLocacoes
+from view.locacao_usuario_view import JanelaLocacaoUsuario
 from view.veiculo_list_view import JanelaListagemVeiculos
-from model.veiculo import VeiculoFactory, Categoria
-import view.veiculo_list_view as list_view
 
-def popular_dados_iniciais():
-    """Popula a lista com alguns dados iniciais para testar a interface."""
-    v1 = VeiculoFactory.criar_veiculo("carro", "ABC1D23", Categoria.ECONOMICO, 150.0)
-    v2 = VeiculoFactory.criar_veiculo("motorhome", "XYZ9A99", Categoria.EXECUTIVO, 300.0)
-    list_view.lista_veiculos.extend([v1, v2])
+
+class JanelaPrincipal(tk.Tk):
+    def __init__(self):
+        super().__init__()
+        self.title("Locadora de Veiculos")
+        self.geometry("520x260")
+        self.criar_menu()
+        self.criar_conteudo()
+
+    def criar_menu(self):
+        barra_menu = tk.Menu(self)
+
+        menu_cadastro = tk.Menu(barra_menu, tearoff=0)
+        menu_cadastro.add_command(label="Veiculo", command=self.abrir_veiculos)
+        menu_cadastro.add_command(label="Locacoes (Admin)", command=self.abrir_locacoes_admin)
+        barra_menu.add_cascade(label="Cadastro", menu=menu_cadastro)
+
+        menu_acao = tk.Menu(barra_menu, tearoff=0)
+        menu_acao.add_command(label="Locar Veiculo", command=self.abrir_locacao_usuario)
+        barra_menu.add_cascade(label="Acao", menu=menu_acao)
+
+        self.config(menu=barra_menu)
+
+    def criar_conteudo(self):
+        tk.Label(self, text="Locadora de Veiculos", font=("Helvetica", 18, "bold")).pack(pady=(48, 12))
+        tk.Label(self, text="Use o menu superior para acessar cadastros e acoes.").pack()
+
+    def abrir_veiculos(self):
+        JanelaListagemVeiculos(self)
+
+    def abrir_locacoes_admin(self):
+        JanelaListagemLocacoes(self)
+
+    def abrir_locacao_usuario(self):
+        JanelaLocacaoUsuario(self)
+
 
 if __name__ == "__main__":
+<<<<<<< Updated upstream
     #popular_dados_iniciais()
     
     root = tk.Tk()
@@ -38,3 +74,6 @@ if __name__ == "__main__":
     
     root.mainloop()
 >>>>>>> 36829c3181f6bafdb411550d19c19b9574303e30
+=======
+    JanelaPrincipal().mainloop()
+>>>>>>> Stashed changes

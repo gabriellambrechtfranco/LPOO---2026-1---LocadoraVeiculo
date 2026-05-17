@@ -13,6 +13,30 @@ Os guias práticos para a implementação dos padrões de projeto no sistema da 
 *   [Aula 3.2 - State](<tutoriais/aula-3-2-tutorial-state--locadora-veiculos.md>)
 *   [Aula 3.3 - Decorator](<tutoriais/aula-3-3-tutorial-decorator--locadora-veiculos.md>)
 
+## Funcionalidades implementadas
+
+Foram adicionadas as telas de locacoes solicitadas na atividade:
+
+* Menu principal com as opcoes Cadastro > Veiculo, Cadastro > Locacoes (Admin) e Acao > Locar Veiculo.
+* Tela administrativa de locacoes com cadastro, edicao, visualizacao e remocao.
+* Tela operacional da locadora com nova reserva, locar, devolver, cancelar e ver detalhes.
+* Controle de status da locacao: reservado, locado, devolvido e cancelado.
+* Validacao de disponibilidade de veiculos por periodo e categoria para novas reservas.
+
+## Detalhamento de Aprendizado
+
+Durante o desenvolvimento foi necessario revisar a estrutura MVC do projeto e separar a responsabilidade das telas, controllers e modelos. A maior dificuldade foi organizar o fluxo entre janelas `tk.Toplevel`, principalmente para recarregar a listagem apos fechar uma tela de cadastro usando `wait_window`.
+
+O principal aprendizado foi entender melhor como o estado de uma locacao muda conforme as acoes do usuario: uma reserva pode virar locacao ativa, depois devolucao, ou pode ser cancelada antes da retirada. Tambem ficou mais claro como validar periodos de datas para evitar que o mesmo veiculo seja reservado em intervalos conflitantes.
+
+## Declaracao de Uso de IA
+
+- [ ] Nenhuma IA foi utilizada na elaboracao deste codigo.
+- [x] Utilizei IA como ferramenta de apoio.
+- Ferramenta: ChatGPT.
+- Finalidade: apoio na organizacao das telas Tkinter, implementacao do controller de locacoes e validacao dos fluxos de criar, editar, locar, devolver e cancelar.
+- Validacao: o codigo foi revisado e testado localmente antes da entrega.
+
 ---
 
 ### ⚠️ Aviso - 09 de Março
