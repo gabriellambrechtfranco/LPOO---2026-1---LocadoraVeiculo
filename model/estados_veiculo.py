@@ -1,8 +1,7 @@
 from abc import ABC, abstractmethod
 
+
 class VeiculoState(ABC):
-    
-    # Referência para manipular facilmente as transições
     def __init__(self, veiculo):
         self.veiculo = veiculo
 
@@ -15,57 +14,50 @@ class VeiculoState(ABC):
         self.__veiculo = valor
 
     @abstractmethod
-    def alugar(self): pass
+    def alugar(self):
+        pass
 
     @abstractmethod
-    def devolver(self): pass
-    
+    def devolver(self):
+        pass
+
     @abstractmethod
-    def enviar_manutencao(self): pass
+    def enviar_manutencao(self):
+        pass
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 36829c3181f6bafdb411550d19c19b9574303e30
 class DisponivelState(VeiculoState):
     def alugar(self):
-        print(f"Sucesso! O veículo {self.veiculo.placa} agora está alugado para um cliente.")
-        # Transição: O próprio estado invoca a migração do ponteiro na base:
+        print(f"Sucesso! O veiculo {self.veiculo.placa} agora esta alugado para um cliente.")
         self.veiculo.estado_atual = AlugadoState(self.veiculo)
-        
+
     def devolver(self):
-        print("Erro: O veículo já consta no pátio e está aguardando clientes, não cabe devolução.")
+        print("Erro: O veiculo ja consta no patio e esta aguardando clientes, nao cabe devolucao.")
 
     def enviar_manutencao(self):
-        print(f"O veículo {self.veiculo.placa} foi retido no pátio da frota para reparos técnicos.")
+        print(f"O veiculo {self.veiculo.placa} foi retido no patio da frota para reparos tecnicos.")
         self.veiculo.estado_atual = ManutencaoState(self.veiculo)
 
 
 class AlugadoState(VeiculoState):
     def alugar(self):
-        # Bloqueio imediato para dupla locação:
-        print(f"Reserva Negada. O veículo {self.veiculo.placa} já está sob locação ativa de outro cliente.")
-        
+        print(f"Reserva negada. O veiculo {self.veiculo.placa} ja esta sob locacao ativa de outro cliente.")
+
     def devolver(self):
-        print(f"Devolução registrada. O veículo {self.veiculo.placa} retorna ao pátio.")
+        print(f"Devolucao registrada. O veiculo {self.veiculo.placa} retorna ao patio.")
         self.veiculo.estado_atual = DisponivelState(self.veiculo)
 
     def enviar_manutencao(self):
-        print("Erro operacional: O carro está na rua com um cliente, impossível fazer manutenção agora.")
+        print("Erro operacional: O carro esta na rua com um cliente, impossivel fazer manutencao agora.")
 
 
 class ManutencaoState(VeiculoState):
     def alugar(self):
-        print(f"Restrição Ativa: O veículo {self.veiculo.placa} não está apto à rodagem.")
-        
+        print(f"Restricao ativa: O veiculo {self.veiculo.placa} nao esta apto a rodagem.")
+
     def devolver(self):
-        # Em manutenção, após o conserto ou liberação técnica, ele retorna para os boxes:
-        print("Fim do período de reparos. Lavagem concluída. O carro agora está disponibilizado.")
+        print("Fim do periodo de reparos. Lavagem concluida. O carro agora esta disponibilizado.")
         self.veiculo.estado_atual = DisponivelState(self.veiculo)
-        
+
     def enviar_manutencao(self):
-<<<<<<< HEAD
-        print("O veículo já se encontra nos estaleiros da oficina no momento.")
-=======
-        print("O veículo já se encontra nos estaleiros da oficina no momento.")
->>>>>>> 36829c3181f6bafdb411550d19c19b9574303e30
+        print("O veiculo ja se encontra nos estaleiros da oficina no momento.")

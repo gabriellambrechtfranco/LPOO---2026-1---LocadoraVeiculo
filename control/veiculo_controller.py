@@ -68,11 +68,6 @@ class VeiculoController:
         placa_normalizada = self._normalizar_placa(placa)
         return next((v for v in self._veiculos if v.placa == placa_normalizada), None)
 
-<<<<<<< Updated upstream
-        except Exception as e:
-            print(f"Erro ao buscar veículo: {e}")
-            return None      
-=======
     def remover_veiculo(self, placa: str):
         if not placa:
             return False, "Placa nao informada"
@@ -111,4 +106,3 @@ class VeiculoController:
             return False, f"Valor invalido. Erro: {erro}"
         except Exception as erro:
             return False, f"Erro inesperado: {erro}"
->>>>>>> Stashed changes

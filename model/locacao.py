@@ -29,14 +29,9 @@ class Locacao:
         self.veiculo = veiculo
         self.data_inicio = data_inicio
         self.data_fim = data_fim
-<<<<<<< Updated upstream
-        self.estrategia = estrategia
-    
-=======
         self.estrategia = estrategia or CalculoPadraoStrategy()
         self.status = status
 
->>>>>>> Stashed changes
     @property
     def veiculo(self):
         return self.__veiculo

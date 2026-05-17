@@ -1,19 +1,3 @@
-<<<<<<< Updated upstream
-import tkinter as tk
-<<<<<<< HEAD
-from model.veiculo_repository import VeiculoRepository
-from views.veiculo_list_view import MainView
-
-root = tk.Tk()
-
-repo = VeiculoRepository()
-app = MainView(root, repo)
-
-root.mainloop()
-=======
-import sys
-=======
->>>>>>> Stashed changes
 import os
 import sys
 import tkinter as tk
@@ -62,18 +46,4 @@ class JanelaPrincipal(tk.Tk):
 
 
 if __name__ == "__main__":
-<<<<<<< Updated upstream
-    #popular_dados_iniciais()
-    
-    root = tk.Tk()
-    root.withdraw() # Esconde a janela principal do Tkinter raiz vazia
-    
-    app = JanelaListagemVeiculos(master=root)
-    # Quando a janela do Toplevel for fechada, encerra o programa
-    app.protocol("WM_DELETE_WINDOW", root.destroy)
-    
-    root.mainloop()
->>>>>>> 36829c3181f6bafdb411550d19c19b9574303e30
-=======
     JanelaPrincipal().mainloop()
->>>>>>> Stashed changes

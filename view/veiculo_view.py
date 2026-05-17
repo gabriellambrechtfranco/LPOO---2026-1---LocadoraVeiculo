@@ -9,17 +9,8 @@ from control.veiculo_controller import VeiculoController
 
 
 class JanelaCadastroVeiculo(tk.Toplevel):
-    def __init__(self, master=None):
+    def __init__(self, master=None, veiculo_existente=None):
         super().__init__(master)
-<<<<<<< Updated upstream
-        self.title("Cadastro de Novo Veículo")
-        self.geometry("400x350")
-        self.controller = VeiculoController()
-        
-        
-        # Label de título
-        lbl_titulo = tk.Label(self, text="Cadastrar Veículo", font=("Helvetica", 16, "bold"))
-=======
 
         self.veiculo_existente = veiculo_existente
         self.controller = VeiculoController()
@@ -29,7 +20,6 @@ class JanelaCadastroVeiculo(tk.Toplevel):
 
         texto_titulo = "Atualizar Veiculo" if veiculo_existente else "Cadastrar Veiculo"
         lbl_titulo = tk.Label(self, text=texto_titulo, font=("Helvetica", 16, "bold"))
->>>>>>> Stashed changes
         lbl_titulo.pack(pady=10)
 
         frame_placa = tk.Frame(self)
@@ -58,12 +48,6 @@ class JanelaCadastroVeiculo(tk.Toplevel):
         self.txt_taxa = tk.Entry(frame_taxa)
         self.txt_taxa.pack(side="right", expand=True, fill="x")
 
-<<<<<<< Updated upstream
-        # Botão Cadastrar
-        # Removido bg/fg para compatibilidade com botões nativos do macOS
-        btn_cadastrar = tk.Button(self, text="Salvar Veículo", command=self.solicitar_cadastro)
-        btn_cadastrar.pack(pady=20)
-=======
         texto_botao = "Atualizar Veiculo" if veiculo_existente else "Salvar Veiculo"
         btn_cadastrar = tk.Button(self, text=texto_botao, command=self.solicitar_cadastro)
         btn_cadastrar.pack(pady=20)
@@ -77,7 +61,6 @@ class JanelaCadastroVeiculo(tk.Toplevel):
         self.cb_tipo.set(self.veiculo_existente.__class__.__name__.lower())
         self.cb_categoria.set(self.veiculo_existente.categoria.name)
         self.txt_taxa.insert(0, f"{self.veiculo_existente.taxa_diaria:.2f}".replace(".", ","))
->>>>>>> Stashed changes
 
     def solicitar_cadastro(self):
         placa = self.txt_placa.get().strip().upper()
@@ -85,16 +68,11 @@ class JanelaCadastroVeiculo(tk.Toplevel):
         categoria = self.cb_categoria.get().strip()
         taxa_str = self.txt_taxa.get().strip()
 
-<<<<<<< Updated upstream
-        sucesso, msg = self.controller.salvar_veiculo(placa, tipo, categoria, taxa_str)
-        
-=======
         if self.veiculo_existente:
             sucesso, msg = self.controller.atualizar_veiculo(placa, tipo, categoria, taxa_str)
         else:
             sucesso, msg = self.controller.salvar_veiculo(placa, tipo, categoria, taxa_str)
 
->>>>>>> Stashed changes
         if sucesso:
             messagebox.showinfo("Sucesso", msg, parent=self)
             self.destroy()
